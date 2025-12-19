@@ -232,9 +232,9 @@ header {
 
 #add-new-task-btn {
   background-color: #219C90;
-  color: white;
+  color: white; 
   border-radius: 30px;
-  border: 0;
+  border: 2px solid white;
   font-size: 16px;
   padding: 18px;
   padding-left: 35px;
@@ -410,7 +410,6 @@ header {
 
 .edit-btn {
   position: absolute;
-
   background: none;
   border: none;
   cursor: pointer;
