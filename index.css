@@ -22,7 +22,7 @@
 }
 
 body {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: 'atkinson hyperlegible', sans-serif;
   display: flex;
   min-height: 100vh;
   flex-direction: row;
@@ -43,12 +43,26 @@ body {
   /* border: 2px solid green; */
   overflow-x: hidden
 }
+#banner{
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  color: var(--primary-font-color);
+  font-size: x-large;
+  font-weight: bolder;
+  background-color: var(--secondary-font-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 20px;
+  text-align: center;
+  height: 70px;
+  width: 1200px;
+}
 
 .side-bar {
   /*  */
   background-color: var(--primary-color);
   /* border: 5px solid rgb(0, 0, 0); */
-  border-right: 0.1px solid #979797;
+  border-right:1px solid #979797;
   /* flex: 0.8; */
   display: none;
   flex-direction: column;
@@ -178,9 +192,9 @@ h4 {
   height: 40px;
   z-index: 2;
   position: absolute;
-  bottom: 45px;
+  top: 50%;
   border-radius: 0 20px 20px 0;
-  background-color: #219C90;
+  background-color: #9ea1a1;
   display: none;
   cursor: pointer;
 }
@@ -236,7 +250,6 @@ header {
   border-radius: 30px;
   border: 2px solid white;
   font-size: 16px;
-  padding: 18px;
   padding-left: 35px;
   padding-right: 35px;
   font-weight: 600;
@@ -738,11 +751,13 @@ input {
 #icon-light {
   margin-left: 15px;
   width: 22px;
+  fill: var(--primary-font-color);
 }
 
 #icon-dark {
   margin-right: 10px;
   width: 22px;
+  fill: var(--primary-font-color);
 }
 
 input[type="checkbox"] {
@@ -928,7 +943,7 @@ input:checked + #label-checkbox-theme:after {
   }
 
   .side-bar {
-    display: none;
+    display: block;
     padding: 0;
     height: 60%;
     width: 30%;

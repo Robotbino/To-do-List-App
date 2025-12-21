@@ -190,6 +190,7 @@ function setupEventListeners() {
       elements.filterDiv.style.display = 'none'; // Also hide the filter overlay
     });
   }
+  
   // Show sidebar event listener
   if (elements.hideSideBarBtn) {
     elements.hideSideBarBtn.addEventListener('click', () => toggleSidebar(false));
