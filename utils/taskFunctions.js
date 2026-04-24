@@ -27,8 +27,6 @@ export const patchTask = (id, updates) => {
   if (taskIndex > -1) {
       tasks[taskIndex] = { ...tasks[taskIndex], ...updates };
       saveTasks(tasks);
-      fetchAndDisplayBoardsAndTasks();
-      // Previously: location.reload(); Now: We'll refresh the UI instead.
   }
   return tasks; // Optionally return the updated tasks list for further processing
 };

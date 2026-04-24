@@ -101,6 +101,7 @@ function filterAndDisplayTasksByBoard(boardName) {
                         </div>`;
 
     const tasksContainer = document.createElement("div");
+    tasksContainer.classList.add("tasks-container");
     column.appendChild(tasksContainer);
 
     filteredTasks.filter(task => task.status === status).forEach(task => {
@@ -171,7 +172,10 @@ function setupEventListeners() {
   // Cancel editing task event listener
   var cancelEditBtn = document.getElementById('cancel-edit-btn');
   if (cancelEditBtn) {
-    cancelEditBtn.addEventListener('click', () => toggleModal(false, elements.editTaskModal));
+    cancelEditBtn.addEventListener('click', () => {
+      toggleModal(false, elements.editTaskModal);
+      elements.filterDiv.style.display = 'none';
+    });
   }
 
   // Cancel adding new task event listener
@@ -187,8 +191,47 @@ function setupEventListeners() {
   if (elements.filterDiv) {
     elements.filterDiv.addEventListener('click', () => {
       toggleModal(false);
-      elements.filterDiv.style.display = 'none'; // Also hide the filter overlay
+      toggleModal(false, elements.editTaskModal);
+      elements.filterDiv.style.display = 'none';
     });
+  }
+
+  // Board kebab menu: toggle the edit-board dropdown
+  const editBoardBtn = document.getElementById('edit-board-btn');
+  const editBoardDiv = document.getElementById('editBoardDiv');
+  if (editBoardBtn && editBoardDiv) {
+    editBoardBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = editBoardDiv.style.display === 'flex';
+      editBoardDiv.style.display = isOpen ? 'none' : 'flex';
+    });
+    document.addEventListener('click', (e) => {
+      if (!editBoardBtn.contains(e.target) && !editBoardDiv.contains(e.target)) {
+        editBoardDiv.style.display = 'none';
+      }
+    });
+  }
+
+  // Delete board
+  const deleteBoardBtn = document.getElementById('deleteBoardBtn');
+  if (deleteBoardBtn) {
+    deleteBoardBtn.addEventListener('click', () => {
+      if (!activeBoard) return;
+      if (!confirm(`Delete board "${activeBoard}" and all its tasks?`)) return;
+      const remaining = getTasks().filter(t => t.board !== activeBoard);
+      localStorage.setItem('tasks', JSON.stringify(remaining));
+      localStorage.removeItem('activeBoard');
+      if (editBoardDiv) editBoardDiv.style.display = 'none';
+      activeBoard = '';
+      elements.headerBoardName.textContent = '';
+      fetchAndDisplayBoardsAndTasks();
+    });
+  }
+
+  // Mobile dropdown in header: opens the sidebar (board picker)
+  const dropdownBtn = document.getElementById('dropdownBtn');
+  if (dropdownBtn) {
+    dropdownBtn.addEventListener('click', () => toggleSidebar(true));
   }
   
   // Show sidebar event listener
@@ -256,6 +299,7 @@ function addTask(event) {
 function toggleSidebar(show) {
   const sidebar = document.querySelector('.side-bar');
   sidebar.classList.toggle('show-sidebar', show);
+  document.body.classList.toggle('sidebar-is-hidden', !show);
   if (elements.showSideBarBtn) {
     elements.showSideBarBtn.style.display = show ? 'none' : 'block';
   }
@@ -292,10 +336,12 @@ function openEditTaskModal(task) {
     console.log("Deleting task with ID:", task.id);
     deleteTask(task.id);
     toggleModal(false, elements.editTaskModal);
+    elements.filterDiv.style.display = 'none';
     refreshTasksUI();
   };
 
-  toggleModal(true, elements.editTaskModal); 
+  toggleModal(true, elements.editTaskModal);
+  elements.filterDiv.style.display = 'block';
 }
 
 function saveTaskChanges(taskId) {
@@ -317,6 +363,7 @@ function saveTaskChanges(taskId) {
 
   // Close the modal and refresh the UI to reflect the changes
   toggleModal(false, elements.editTaskModal);
+  elements.filterDiv.style.display = 'none';
   refreshTasksUI();
 }
 
@@ -333,5 +380,6 @@ function init() {
   toggleSidebar(showSidebar);
   const isLightTheme = localStorage.getItem('light-theme') === 'enabled';
   document.body.classList.toggle('light-theme', isLightTheme);
+  if (elements.themeSwitch) elements.themeSwitch.checked = isLightTheme;
   fetchAndDisplayBoardsAndTasks(); // Initial display of boards and tasks
 }
