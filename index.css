@@ -239,6 +239,7 @@ body {
 
 .side-bar-bottom {
   display: flex;
+  width: 100%;
   justify-content: center;
   flex-direction: column;
   gap: 20px;
@@ -916,7 +917,7 @@ textarea {
   gap: 12px;
   border: 1px solid var(--border-subtle);
 }
-
+#close-on,
 #icon-dark,
 #icon-light {
   width: 20px;
@@ -967,7 +968,7 @@ input:checked + #label-checkbox-theme::after {
 }
 
 #label-checkbox-theme:active::after {
-  width: 22px;
+  width: 20px;
 }
 
 /* ============================================================================
