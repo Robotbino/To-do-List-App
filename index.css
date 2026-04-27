@@ -1,11 +1,8 @@
-/* index.css - Professional Task Management UI */
-
 :root {
-  /* Dark theme colors (default) */
-  --bg-primary: #1e1e1e;      /* canvas / workspace */
-  --bg-secondary: #171717;    /* sidebar + header chrome */
+  --bg-primary: #1e1e1e;     
+  --bg-secondary: #171717;   
   --bg-tertiary: #262626;
-  --bg-surface: #252525;      /* task cards */
+  --bg-surface: #252525;     
   --bg-overlay: rgba(0, 0, 0, 0.6);
 
   --text-primary: #f5f5f5;
@@ -29,10 +26,10 @@
 }
 
 .light-theme {
-  --bg-primary: #f5f3ee;      /* canvas */
-  --bg-secondary: #e6e2d9;    /* sidebar + header — darker than canvas */
+  --bg-primary: #f5f3ee;     
+  --bg-secondary: #e6e2d9;   
   --bg-tertiary: #ebe6dc;
-  --bg-surface: #ffffff;      /* cards pop white */
+  --bg-surface: #ffffff;      
   --bg-overlay: rgba(0, 0, 0, 0.4);
 
   --text-primary: #131313;
@@ -78,8 +75,8 @@ body {
 }
 
 /* ============================================================================
-   LAYOUT
-   ============================================================================ */
+  LAYOUT
+  ============================================================================ */
 
 #layout {
   width: 100%;
@@ -90,8 +87,8 @@ body {
 }
 
 /* ============================================================================
-   SIDEBAR NAVIGATION
-   ============================================================================ */
+  SIDEBAR NAVIGATION
+  ============================================================================ */
 
 .side-bar {
   background-color: var(--bg-secondary);
@@ -250,7 +247,7 @@ body {
 .hide-side-bar-div {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   padding: 0 12px;
   gap: 12px;
@@ -301,8 +298,8 @@ body {
 }
 
 /* ============================================================================
-   HEADER
-   ============================================================================ */
+  HEADER
+  ============================================================================ */
 
 header {
   display: flex;
@@ -441,8 +438,8 @@ header {
 }
 
 /* ============================================================================
-   MAIN CONTENT
-   ============================================================================ */
+  MAIN CONTENT
+  ============================================================================ */
 
 .container {
   display: flex;
@@ -536,8 +533,8 @@ header {
   display: none;                /* Chrome/Safari */
 }
 /* ============================================================================
-   TASK CARDS
-   ============================================================================ */
+  TASK CARDS
+  ============================================================================ */
 
 .task-div {
   display: flex;
@@ -585,8 +582,8 @@ header {
 }
 
 /* ============================================================================
-   MODALS
-   ============================================================================ */
+  MODALS
+  ============================================================================ */
 
 .modal-window,
 .edit-task-modal-window {
@@ -715,8 +712,8 @@ textarea {
 }
 
 /* ============================================================================
-   BUTTONS
-   ============================================================================ */
+  BUTTONS
+  ============================================================================ */
 
 .button-group {
   display: flex;
@@ -903,44 +900,49 @@ textarea {
 }
 
 /* ============================================================================
-   THEME TOGGLE
-   ============================================================================ */
+  THEME TOGGLE
+  ============================================================================ */
 
 .toggle-div {
-  display: flex;
-  justify-content: center;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
+  align-self: center;
+  height: 40px;      
+  width: 108px;
   background-color: var(--bg-tertiary);
-  padding: 10px 14px;
-  border-radius: 25px;
-  margin: 0 12px;
-  gap: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin: 0;                  
+  gap: 8px;
   border: 1px solid var(--border-subtle);
 }
 #close-on,
 #icon-dark,
 #icon-light {
-  width: 20px;
-  height: 20px;
+  width: 14px;
+  height: 14px;
   fill: var(--text-primary);
   opacity: 0.95;
   transition: fill 0.2s ease, opacity 0.2s ease;
+  flex-shrink: 0;
 }
 
 input[type="checkbox"] {
   height: 0;
   width: 0;
   visibility: hidden;
+  position: absolute;      
 }
 
 #label-checkbox-theme {
   cursor: pointer;
   text-indent: -9999px;
-  width: 48px;
-  height: 24px;
+  width: 36px;             
+  height: 18px;           
   background: var(--accent-primary);
   display: block;
-  border-radius: 12px;
+  border-radius: 10px;
   position: relative;
   transition: all 0.3s ease;
   flex-shrink: 0;
@@ -949,12 +951,12 @@ input[type="checkbox"] {
 #label-checkbox-theme::after {
   content: "";
   position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 18px;
-  height: 18px;
+  top: 2px;
+  left: 2px;
+  width: 14px;             
+  height: 14px;
   background: var(--bg-surface);
-  border-radius: 10px;
+  border-radius: 50%;
   transition: all 0.3s ease;
 }
 
@@ -963,7 +965,7 @@ input:checked + #label-checkbox-theme {
 }
 
 input:checked + #label-checkbox-theme::after {
-  left: calc(100% - 3px);
+  left: calc(100% - 2px);
   transform: translateX(-100%);
 }
 
@@ -972,8 +974,8 @@ input:checked + #label-checkbox-theme::after {
 }
 
 /* ============================================================================
-   FILTER OVERLAY
-   ============================================================================ */
+  FILTER OVERLAY
+  ============================================================================ */
 
 #filterDiv {
   background-color: var(--bg-overlay);
@@ -987,8 +989,8 @@ input:checked + #label-checkbox-theme::after {
 }
 
 /* ============================================================================
-   RESPONSIVE DESIGN
-   ============================================================================ */
+  RESPONSIVE DESIGN
+  ============================================================================ */
 
 @media screen and (max-width: 800px) {
   .side-bar {
